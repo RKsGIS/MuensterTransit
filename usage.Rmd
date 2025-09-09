@@ -1,0 +1,99 @@
+---
+title: "PublicTransAnalysis Package Usage"
+author: "Ram Kumar Muthusamy"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# PublicTransAnalysis Package Usage
+
+This vignette provides examples of how to use functions from the **PublicTransAnalysis** package for public transportation data analysis and visualization.
+
+
+
+##Fetching Data
+
+```{r}
+library(PublicTransAnalysis)
+
+# Fetch data from API
+fetch_api_data()
+
+# Read GTFS data from files
+gtfs_data <- read_gtfs_files("inst/extdata/stadtwerke_feed.zip")
+
+directory_path <- file.path(getwd(), "inst", "extdata")
+stops <- readRDS(file.path(directory_path, "stops.rds"))
+routes <- readRDS(file.path(directory_path, "routes.rds"))
+shapes <- readRDS(file.path(directory_path, "shapes.rds"))
+stop_times <- readRDS(file.path(directory_path, "stop_times.rds"))
+trips <- readRDS(file.path(directory_path, "trips.rds"))
+calendar_dates <- readRDS(file.path(directory_path, "calendar_dates.rds"))
+
+
+```
+
+##  Creating Maps
+Stop Locations Map
+```{r}
+# Create a map showing stop locations from GTFS data
+plot_stops(stops)
+
+```
+
+
+Flat Stop Locations Map
+```{r}
+# Create a map showing flat stop locations from API data
+plot_stops_api()
+
+```
+Vehicle Locations Map
+```{r}
+# Create a map showing vehicle locations from API data
+plot_bus_locations_api()
+
+```
+
+##Route Analysis
+Specific Route Map
+```{r}
+# Create a map displaying a specific route and its stops
+route_id <- 5
+plot_specific_route(route_id)
+
+```
+##Nearest Bus Stop
+
+```{r}
+# Find the nearest bus stop to a given point
+lat <- 51.972733
+lon <- 7.606783
+nearest_stop <- find_nearest_stop(lat, lon)
+
+```
+
+##Most Common Stops
+
+```{r}
+# Find the most common stops from GTFS data
+head(find_busiest_stops(stops))
+
+```
+
+
+```{r}
+# Find the most common stops from API data
+head(find_busiest_stops_api(stops_data_flat))
+
+```
+##Available Buses
+
+```{r}
+# Find available bus lines for a given bus stop
+get_available_buses("Hansaring A")
+
+```
+

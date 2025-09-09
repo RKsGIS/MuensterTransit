@@ -1,0 +1,19 @@
+Package: MuensterTransit
+Type: Package
+Title: Public Transportation Data Analysis and Visualization of Stadt
+        Muenster
+Version: 0.1.0
+Author: Ram Kumar Muthusamy
+Maintainer: The package maintainer <ramkumar.m@uni-muenster.de>
+Description: A package designed to facilitate the analysis and visualization of public transportation data. It offers functions to fetch data from APIs and GTFS text files, create maps of routes and stops, calculate trip durations, find busiest stops, and perform various analyses on public transportation data. The package utilizes data from Stadtwerke Münster - Bus Live Daten for real-time vehicle information and Stadtwerke Münster GTFS feed for GTFS data.
+License: MIT
+Encoding: UTF-8
+Imports: leaflet, sf, magrittr, jsonlite, dplyr, httr , geosphere ,
+        tidyr
+RoxygenNote: 7.2.3
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+VignetteIndexEntry: Muenster_PublicTransAnalysis
+NeedsCompilation: no
+Packaged: 2023-08-13 07:18:46 UTC; Nitro
+Depends: R (>= 3.5.0)

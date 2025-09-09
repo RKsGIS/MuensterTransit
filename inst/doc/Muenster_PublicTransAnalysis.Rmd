@@ -1,0 +1,121 @@
+---
+title: "MuensterTransit"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Muenster_PublicTransAnalysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+
+
+## Introduction
+
+MuensterTransit package is designed to simplify the analysis and visualization of public transportation data in Stadt Muenster. This vignette demonstrates the key functionalities of the package, including data fetching, route analysis, stop visualization, and more.
+
+
+## Fetching Data
+
+Start by fetching the required data:
+
+```{r}
+library(MuensterTransit)
+
+# Fetch data from API
+fetch_api_data()
+
+# Read GTFS data from the package's inst/extdata folder
+gtfs_data <- read_gtfs_files(system.file("extdata", "stadtwerke_feed.zip", package = "MuensterTransit"))
+
+# Access GTFS data from the package
+stops <- gtfs_data$stops
+routes <- gtfs_data$routes
+shapes <- gtfs_data$shapes
+trips <- gtfs_data$trips
+
+```
+
+##  Creating Maps
+
+### Stop Locations Map
+
+Visualize stop locations from GTFS data:
+
+```{r}
+# Create a map showing stop locations from GTFS data
+plot_stops(stops)
+
+```
+
+
+Visualize flat stop locations from API data:
+
+```{r}
+# Create a map showing flat stop locations from API data
+plot_stops_api()
+
+```
+
+### Vehicle Locations Map
+
+Visualize vehicle locations from API data:
+
+```{r}
+# Create a map showing vehicle locations from API data
+plot_bus_locations_api()
+
+```
+
+
+## Specific Route Map
+
+Visualize a specific route :
+
+```{r}
+# Create a map displaying a specific routes
+route_id <- 5
+plot_specific_route(route_id)
+
+```
+
+## Nearest Bus Stop
+
+Find the nearest bus stop to a given point:
+
+```{r}
+# Find the nearest bus stop to a given point
+lat <- 51.972733
+lon <- 7.606783
+find_nearest_stop(lat, lon)
+
+```
+
+## Most Busiest Stops
+
+Find the most busiest stops from GTFS data
+
+```{r}
+head(find_busiest_stops(stops))
+
+```
+
+Find the most busiest stops from API data
+
+```{r}
+head(find_busiest_stops_api(stops_data_flat))
+```
+
+## Available Buses
+
+Find available bus lines for a given bus stop:
+
+```{r}
+# Find available bus lines for a given bus stop
+get_available_buses("Hansaring A")
+
+```
+
+## Conclusion
+
+In conclusion, the MuensterTransit package serves as a valuable tool for simplifying the analysis and visualization of public transportation data in Stadt Muenster. With its data fetching capabilities, route analysis, and interactive maps, users can gain insights into stop locations, vehicle positions, and more. By offering a user-friendly interface, this package empowers users to make informed decisions and better understand the dynamics of the public transportation network in Stadt Muenster. Whether you're a researcher, analyst, or transportation enthusiast, MuensterTransit opens new avenues for exploring and utilizing public transportation data effectively.
